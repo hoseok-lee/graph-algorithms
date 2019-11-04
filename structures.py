@@ -49,7 +49,7 @@ class Graph:
             self.source = source
             self.sink = sink
 
-        # to deal with the heap queue sort
+        # To deal with the heap queue sort
         def __lt__(self, other):
             return self.weight < other.weight
 
@@ -57,36 +57,33 @@ class Graph:
             return "(" + str(self.weight) + ", " + str(self.source.value) + ", " + str(self.sink.value) + ")"
 
     def __init__(self, directed=False):
-        # all vertices MUST be unique
+        # All vertices MUST be unique
         self.vertices = []
         self.num_v = 0
-        # in a multi-graph, there may be multiple edges of same weight
-        # that lead from the same source to the same sink
-        # cosmetically identical, yet two distinct edges
+        # In a multi-graph, there may be multiple edges of same weight that lead from the same source to the same sink
+        # Cosmetically identical, yet two distinct edges
         self.edges = []
         self.num_e = 0
 
-        # continually generated adjacency list
+        # Continually generated adjacency list
         self.adj_list = []
         self.edg_list = []
 
-        # determines if it is a digraph
+        # Determines if it is a digraph
         self.directed = directed
 
-        # for graph algorithms, determines the maximum weight any path within the graph can have
-        # this is more ideal than setting the maximum to some integer large enough to replace infinity practically
+        # For graph algorithms, determines the maximum weight any path within the graph can have
+        # This is more ideal than setting the maximum to some integer large enough to replace infinity practically
         self.inf = 0
 
     def add_edge(self, weight, source, sink):
-        # instead of assigning an edge the index or value of a vertex
-        # assign the actual vertex
+        # Instead of assigning an edge the index or value of a vertex, assign the actual vertex
 
-        # add edge
+        # Add edge
         self.edges.append(self.Edge(weight, self.vertices[source], self.vertices[sink]))
         self.num_e += 1
 
-        # update matrices
-        # adjacency and edges
+        # Update adjacency and edge matrices
         self.adj_list[source][sink] += 1
         self.edg_list[source][sink].append(self.edges[self.num_e - 1])
         if not self.directed and sink != source:
@@ -101,7 +98,7 @@ class Graph:
         else:
             self.vertices.append(value)
 
-        # append the matrices
+        # Concatenate the matrices
         self.adj_list.append([0]*self.num_v)
         self.edg_list.append([]*self.num_v)
         for i in range(self.num_v):
@@ -109,7 +106,7 @@ class Graph:
 
         self.num_v += 1
 
-        # update the matrices
+        # Update the matrices
         for i in range(self.num_v):
             self.adj_list[i].append(0)
             # for the exception that it is a multi-graph
