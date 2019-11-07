@@ -263,3 +263,15 @@ def Prim(graph):
         heapify(Q)
 
     return F
+
+
+#
+# BORUVKA'S ALGORITHM
+#           Calculates the minimum spanning tree (MST)
+#
+# Input:    Graph
+# Output:   Graph
+# Notes:    Identical function to Kruskal's algorithm
+#
+def Boruvka(graph):
+    pass
